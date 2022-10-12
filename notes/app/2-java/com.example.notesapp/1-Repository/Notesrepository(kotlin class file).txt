@@ -1,0 +1,24 @@
+package com.example.notes.Repository
+import androidx.lifecycle.LiveData
+import Dao.NotesDao
+import modelFormat.Notes
+
+class NotesRepository(val dao: NotesDao) {
+
+
+    fun getallnotes(): LiveData<List<Notes>>{
+        return dao.getNotes()
+    }
+
+    fun insertnotes(notes: Notes)
+    {
+        dao.insertNotes(notes)
+    }
+    fun deletenotes(id:Int){
+        dao.deleteNotes(id)
+    }
+    fun updatenotes(notes: Notes){
+        dao.updateNotes(notes)
+    }
+
+}

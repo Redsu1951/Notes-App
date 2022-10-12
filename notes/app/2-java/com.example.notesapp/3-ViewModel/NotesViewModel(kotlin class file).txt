@@ -1,0 +1,30 @@
+package com.example.notes.ViewModel
+
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import com.example.notes.Repository.NotesRepository
+import database.NotesDatabase
+import modelFormat.Notes
+
+class NotesViewModel(application: Application) :AndroidViewModel(application){
+
+    val repository:NotesRepository
+    init {
+        val dao= NotesDatabase.getDatabaseInstance(application).myNotesdao()
+        repository=NotesRepository(dao)
+    }
+    fun addnotes(notes: Notes)
+    {
+        repository.insertnotes(notes)
+    }
+    fun getnotes(): LiveData<List<Notes>> = repository.getallnotes()
+    fun deleteNotes(id:Int)
+    {
+        repository.deletenotes(id)
+    }
+    fun updateNotes(notes: Notes)
+    {
+        repository.updatenotes(notes)
+    }
+}

@@ -1,0 +1,47 @@
+package com.example.notes.ui.fragments
+
+import android.content.ContentValues.TAG
+import android.os.Bundle
+import android.util.Log
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
+import androidx.recyclerview.widget.GridLayoutManager
+
+import com.example.notes.R
+import com.example.notes.ViewModel.NotesViewModel
+import com.example.notes.databinding.FragmentHOmefragmentBinding
+
+
+
+import com.example.notes.ui.adapter.NotesAdapter
+
+
+class homefragment : Fragment() {
+    lateinit var binding: FragmentHOmefragmentBinding
+    val viewModel:NotesViewModel by viewModels()
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        binding=FragmentHOmefragmentBinding.inflate(layoutInflater,container,false)
+
+        viewModel.getnotes().observe(viewLifecycleOwner) { notesList ->
+            binding.revAllNotes.layoutManager=GridLayoutManager(requireContext(),2)
+            binding.revAllNotes.adapter=NotesAdapter(requireContext(),notesList)
+        }
+        binding.btnAddnotes.setOnClickListener{
+            Navigation.findNavController(it).navigate(R.id.action_homefragment2_to_createfragment22)
+        }
+
+        return binding.root
+    }
+
+
+}
