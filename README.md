@@ -1,5 +1,5 @@
 # Notes-App
-A basic notes app with red-white & white-black themed ui
+A basic notes app with red-black & white-black themed ui
 
 
 A notes app or a remainder app is an application which store the data a user wants to refer later.
